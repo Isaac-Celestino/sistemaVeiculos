@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Editar Veículo</title>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+{{-- resources/views/veiculos/edit.blade.php --}}
+@extends('layouts.app')
 
-<div class="container mt-5">
-    <h1 class="mb-4">Editar Veículo</h1>
+@section('content')
+<div class="container">
+    <h1>Editar Veículo</h1>
 
-    {{-- Mensagens de erro --}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Erros encontrados:</strong>
-            <ul class="mb-0">
+            <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -79,6 +73,4 @@
         <a href="{{ route('veiculos.index') }}" class="btn btn-secondary">Voltar à lista</a>
     </form>
 </div>
-
-</body>
-</html>
+@endsection

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fabricante;
-use Illuminate\Http\Request;
+use App\Http\Requests\FabricanteRequest;
 
 class FabricanteController extends Controller
 {
@@ -21,15 +21,18 @@ class FabricanteController extends Controller
     }
 
     // Salvar novo fabricante
-    public function store(Request $request)
+    public function store(FabricanteRequest $request)
     {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-        ]);
-
-        Fabricante::create($request->all());
+        Fabricante::create($request->validated());
 
         return redirect()->route('fabricantes.index')->with('success', 'Fabricante cadastrado com sucesso!');
+    }
+
+    // Mostrar detalhes do fabricante
+    public function show(Fabricante $fabricante)
+    {
+        $fabricante->load('veiculos');
+        return view('fabricantes.show', compact('fabricante'));
     }
 
     // Mostrar formulário para editar fabricante
@@ -39,13 +42,9 @@ class FabricanteController extends Controller
     }
 
     // Atualizar fabricante
-    public function update(Request $request, Fabricante $fabricante)
+    public function update(FabricanteRequest $request, Fabricante $fabricante)
     {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-        ]);
-
-        $fabricante->update($request->all());
+        $fabricante->update($request->validated());
 
         return redirect()->route('fabricantes.index')->with('success', 'Fabricante atualizado com sucesso!');
     }

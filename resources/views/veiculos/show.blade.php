@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Detalhes do Veículo</title>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+{{-- resources/views/veiculos/show.blade.php --}}
+@extends('layouts.app')
 
-<div class="container mt-5">
-    <h1 class="mb-4">Detalhes do Veículo</h1>
+@section('content')
+<div class="container">
+    <h1>Detalhes do Veículo</h1>
 
     <div class="card">
         <div class="card-body">
@@ -18,6 +13,8 @@
             <p><strong>Ano:</strong> {{ $veiculo->ano }}</p>
             <p><strong>Cor:</strong> {{ $veiculo->cor ?? '-' }}</p>
             <p><strong>Placa:</strong> {{ $veiculo->placa ?? '-' }}</p>
+            <p><strong>Categoria:</strong> {{ $veiculo->categoria->nome ?? '-' }}</p>
+            <p><strong>Fabricante:</strong> {{ $veiculo->fabricante->nome ?? '-' }}</p>
         </div>
     </div>
 
@@ -26,6 +23,4 @@
         <a href="{{ route('veiculos.edit', $veiculo->id) }}" class="btn btn-warning">Editar Veículo</a>
     </div>
 </div>
-
-</body>
-</html>
+@endsection

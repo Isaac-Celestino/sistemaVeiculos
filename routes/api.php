@@ -1,8 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CategoriaApiController;
+use App\Http\Controllers\Api\FabricanteApiController;
 use App\Http\Controllers\Api\VeiculoApiController;
+use Illuminate\Support\Facades\Route;
 
-Route::middleware('api')->group(function () {
-    Route::apiResource('veiculos', VeiculoApiController::class);
-});
+// Rotas da API para Categorias
+Route::apiResource('categorias', CategoriaApiController::class);
+
+// Rotas da API para Fabricantes
+Route::apiResource('fabricantes', FabricanteApiController::class);
+
+// Rotas da API para Veículos
+Route::apiResource('veiculos', VeiculoApiController::class);

@@ -11,7 +11,7 @@ class Fabricante extends Model
 
     protected $fillable = [
         'nome',
-        'pais',
+        'pais', // Adicionado o campo pais que estava no Request
     ];
 
     public function veiculos()

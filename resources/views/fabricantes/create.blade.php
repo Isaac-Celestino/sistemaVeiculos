@@ -1,39 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastrar Fabricante</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+@extends('layouts.app')
 
-<div class="container mt-5">
-    <h1 class="mb-4">Cadastrar Novo Fabricante</h1>
+@section('content')
+<div class="container">
+    <h1>Novo Fabricante</h1>
 
-    {{-- Exibir erros de validação --}}
     @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Erros encontrados:</strong>
             <ul>
-                @foreach ($errors->all() as $erro)
-                    <li>{{ $erro }}</li>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
 
-    <form method="POST" action="{{ route('fabricantes.store') }}">
+    <form action="{{ route('fabricantes.store') }}" method="POST">
         @csrf
-
-        <div class="mb-3">
-            <label for="nome" class="form-label">Nome do Fabricante:</label>
-            <input type="text" class="form-control" id="nome" name="nome" value="{{ old('nome') }}" required>
+        <div class="form-group mb-3">
+            <label for="nome">Nome do Fabricante</label>
+            <input type="text" name="nome" id="nome" class="form-control" value="{{ old('nome') }}" required>
         </div>
-
-        <button type="submit" class="btn btn-success">Salvar</button>
-        <a href="{{ route('fabricantes.index') }}" class="btn btn-secondary">Voltar</a>
+        
+        <div class="form-group mb-3">
+            <label for="pais">País</label>
+            <input type="text" name="pais" id="pais" class="form-control" value="{{ old('pais') }}" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{{ route('fabricantes.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
-
-</body>
-</html>
+@endsection
